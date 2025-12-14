@@ -1,0 +1,261 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CARVİSİON Yönetim</title>
+
+    <link rel="stylesheet" href="~/connect-plus-1.0.0/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/connect-plus-1.0.0/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/connect-plus-1.0.0/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/connect-plus-1.0.0/assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/connect-plus-1.0.0/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="~/connect-plus-1.0.0/assets/css/style.css">
+    <link rel="shortcut icon" href="~/connect-plus-1.0.0/assets/images/favicon.png" />
+
+    <style>
+        /* =======================================================
+                   Yolladığınız Özel CSS Stil Blokları
+                   ======================================================= */
+        :root {
+            /* ANA RENKLER */
+            --color-bg-deep: #EAE4F5;
+            --color-bg-main: #FFFFFF;
+            --color-bg-card: #FFFFFF;
+            --color-text-dark: #1E293B;
+            --color-text-muted: #6B7280;
+            /* VURGU RENKLERİ */
+            --color-accent-primary: #8B5CF6;
+            --color-accent-secondary: #C4B5FD;
+            --color-border: #E5E7EB;
+        }
+
+        /* Sayfa Arkaplanı */
+        body, .container-scroller, .page-body-wrapper, .main-panel {
+            background-color: var(--color-bg-main) !important;
+        }
+
+            .main-panel .content-wrapper {
+                background: transparent !important;
+                padding: 2.5rem 3rem !important;
+            }
+
+        /* Kartlar ve Paneller */
+        .card {
+            background-color: var(--color-bg-card) !important;
+            color: var(--color-text-dark) !important;
+            border: 1px solid var(--color-border) !important;
+            border-radius: 4px !important;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05) !important;
+        }
+
+        h1, h2, h3, h4, h5, h6, .menu-title {
+            color: var(--color-text-dark) !important;
+        }
+
+        p, span, .text-muted {
+            color: var(--color-text-muted) !important;
+        }
+
+        /* SIDEBAR STİLLERİ */
+        .sidebar, .navbar {
+            background-color: var(--color-bg-deep) !important;
+            border-right: 1px solid #f0f0f5 !important;
+            box-shadow: none !important;
+        }
+
+            .navbar .navbar-brand-wrapper {
+                background: var(--color-bg-deep) !important;
+                border-right: 1px solid var(--color-border);
+            }
+
+            .sidebar .nav .nav-item .nav-link {
+                color: var(--color-accent-primary) !important;
+                border-left: 4px solid transparent;
+                transition: all 0.2s ease;
+            }
+
+                .sidebar .nav .nav-item .nav-link .menu-icon {
+                    color: var(--color-accent-primary) !important;
+                }
+
+                .sidebar .nav .nav-item .nav-link:hover {
+                    background: #f0f0f5 !important;
+                    color: var(--color-accent-primary) !important;
+                }
+
+            .sidebar .nav .nav-item.active > .nav-link {
+                background: #e6e0f0 !important;
+                border-left-color: var(--color-accent-primary) !important;
+            }
+
+                .sidebar .nav .nav-item.active > .nav-link .menu-icon,
+                .sidebar .nav .nav-item.active > .nav-link .menu-title {
+                    color: var(--color-accent-primary) !important;
+                }
+
+        /* DASHBOARD VURGU DÜZELTMELERİ */
+        .bg-dark {
+            background-color: #ffffff !important;
+            color: var(--color-text-dark) !important;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+            .bg-dark h6 {
+                color: var(--color-text-dark) !important;
+            }
+
+        .sidebar-icon-only .main-panel {
+            width: calc(100% - 70px) !important;
+        }
+
+        .main-panel {
+            width: 100% !important;
+        }
+
+        .quick-action-card, .ai-card {
+            border-left: 4px solid var(--color-accent-primary) !important;
+        }
+
+        .btn-primary, .bg-primary {
+            background-color: var(--color-accent-primary) !important;
+            border-color: var(--color-accent-primary) !important;
+            color: #fff !important;
+        }
+
+        .bg-success, .btn-success {
+            background-color: var(--color-accent-secondary) !important;
+            border-color: var(--color-accent-secondary) !important;
+        }
+
+        .icon-container i {
+            color: var(--color-text-dark) !important;
+        }
+
+        /* FORM VE BUTON DÜZELTMELERİ */
+        .btn-outline-light {
+            border-color: var(--color-border) !important;
+            color: var(--color-text-dark) !important;
+            background-color: transparent !important;
+        }
+
+            .btn-outline-light:hover {
+                background-color: #f0f0f5 !important;
+                border-color: #d1d5db !important;
+                color: var(--color-text-dark) !important;
+            }
+    </style>
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="/Default/Index/">
+                    <h2 style="color: var(--color-accent-primary); font-weight: 900; letter-spacing: 1px; margin: 0;">CARVİSİON</h2>
+                </a>
+                <a class="navbar-brand brand-logo-mini" href="/Default/Index/">
+                    <h2 style="color: var(--color-accent-primary); font-weight: 900; font-size: 1.8rem; margin: 0;">C</h2>
+                </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="container-fluid page-body-wrapper">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/Dashboard/">
+                            <span class="icon-bg"><i class="mdi mdi-view-dashboard menu-icon"></i></span>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Category/Index">
+                            <span class="icon-bg"><i class="mdi mdi-tag-multiple menu-icon"></i></span>
+                            <span class="menu-title">Kategoriler</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Car/Index">
+                            <span class="icon-bg"><i class="mdi mdi-car menu-icon"></i></span>
+                            <span class="menu-title">Araçlar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Brand/Index">
+                            <span class="icon-bg"><i class="mdi mdi-apple-keyboard-command menu-icon"></i></span>
+                            <span class="menu-title">Markalar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Employee/Index">
+                            <span class="icon-bg"><i class="mdi mdi-account menu-icon"></i></span>
+                            <span class="menu-title">Çalışanlar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Review/Index">
+                            <span class="icon-bg"><i class="mdi mdi-comment-text menu-icon"></i></span>
+                            <span class="menu-title">Yorumlar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Reservation/Index">
+                            <span class="icon-bg"><i class="mdi mdi-calendar-check menu-icon"></i></span>
+                            <span class="menu-title">Rezervasyonlar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Slider/Index">
+                            <span class="icon-bg"><i class="mdi mdi-image menu-icon"></i></span>
+                            <span class="menu-title">Slider</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Location/Index">
+                            <span class="icon-bg"><i class="mdi mdi-map-marker menu-icon"></i></span>
+                            <span class="menu-title">Lokasyonlar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/About/Index">
+                            <span class="icon-bg"><i class="mdi mdi-information menu-icon"></i></span>
+                            <span class="menu-title">Hakkımızda</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/connect-plus-1.0.0/assets/vendors/js/vendor.bundle.base.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <script src="~/connect-plus-1.0.0/assets/vendors/jquery-circle-progress/js/circle-progress.min.js"></script>
+    <script src="~/connect-plus-1.0.0/assets/js/off-canvas.js"></script>
+    <script src="~/connect-plus-1.0.0/assets/js/hoverable-collapse.js"></script>
+    <script src="~/connect-plus-1.0.0/assets/js/misc.js"></script>
+    <script src="~/connect-plus-1.0.0/assets/js/dashboard.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

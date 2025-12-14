@@ -1,0 +1,324 @@
+﻿@{
+    ViewData["Title"] = "Yönetici Paneli";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row mb-4">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Kayıtlı Araç Sayısı</div>
+                            <div class="h5 mb-0 font-weight-bold text-dark">@ViewBag.TotalCars</div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon-circle" style="background-color: #8B5CF6;">
+                                <i class="mdi mdi-car text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Kiralanabilir Araç</div>
+                            <div class="h5 mb-0 font-weight-bold" style="color: #00B894;">@ViewBag.AvailableCars</div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon-circle" style="background-color: #00B894;">
+                                <i class="mdi mdi-check-circle text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Tamamlanan Kiralamalar</div>
+                            <div class="h5 mb-0 font-weight-bold text-dark">@ViewBag.TotalReservations</div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon-circle" style="background-color: #EC4899;">
+                                <i class="mdi mdi-calendar-check text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Onay Bekleyenler</div>
+                            <div class="h5 mb-0 font-weight-bold text-warning">@ViewBag.PendingReservations</div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon-circle bg-warning">
+                                <i class="mdi mdi-clock-outline text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-6 col-lg-5">
+            <div class="card border-0 shadow-sm mb-4 quick-actions">
+                <div class="card-header bg-dark text-white">
+                    <div class="d-flex align-items-center">
+                        <h6 class="m-0 font-weight-bold">Yönetim Kısayolları</h6>
+                    </div>
+                </div>
+                <div class="card-body p-4" style="padding-top: 1.5rem !important;">
+                    <a href="/Admin/CarRecommendation" class="btn btn-outline-dark btn-lg mb-3 w-100">
+                        <div class="d-flex align-items-start">
+                            <div class="action-icon text-white" style="background-color: #8B5CF6; margin-right: 1.5rem !important;">
+                                <i class="mdi mdi-robot"></i>
+                            </div>
+                            <div class="flex-grow-1 text-start">
+                                <div class="fw-bold">Akıllı Araç Asistanı</div>
+                                <small class="text-muted">Yapay zeka destekli öneriler</small>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/Car/Index" class="btn btn-outline-dark btn-lg mb-3 w-100">
+                        <div class="d-flex align-items-start">
+                            <div class="action-icon text-white" style="background-color: #00B894; margin-right: 1.5rem !important;">
+                                <i class="mdi mdi-car-multiple"></i>
+                            </div>
+                            <div class="flex-grow-1 text-start">
+                                <div class="fw-bold">Araç Envanter Yönetimi</div>
+                                <small class="text-muted">Araç ekleme, düzenleme ve listeleme</small>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/Reservation/Index" class="btn btn-outline-dark btn-lg w-100">
+                        <div class="d-flex align-items-start">
+                            <div class="action-icon text-white" style="background-color: #EC4899; margin-right: 1.5rem !important;">
+                                <i class="mdi mdi-calendar-check"></i>
+                            </div>
+                            <div class="flex-grow-1 text-start">
+                                <div class="fw-bold">Kiralama Süreçleri</div>
+                                <small class="text-muted">Rezervasyonları görüntüle ve yönet</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-7">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-dark text-white d-flex flex-row align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-gas-pump me-2"></i>
+                        <h6 class="m-0 font-weight-bold">Anlık Piyasa Verileri (₺/Litre)</h6>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+
+                    <div id="fuelPriceDisplay" class="d-flex justify-content-around text-center mb-4 mt-2">
+                        <div class="fuel-item">
+                            <h5 class="mb-0 text-primary fw-bold" id="petrol-price-display">₺0.00</h5>
+                            <small class="text-muted">Benzin</small>
+                        </div>
+                        <div class="fuel-item">
+                            <h5 class="mb-0 text-success fw-bold" id="diesel-price-display">₺0.00</h5>
+                            <small class="text-muted">Motorin</small>
+                        </div>
+                        <div class="fuel-item">
+                            <h5 class="mb-0 text-info fw-bold" id="lpg-price-display">₺0.00</h5>
+                            <small class="text-muted">LPG</small>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="fuelPriceChart" style="height:250px"></canvas>
+                    </div>
+
+                    <div id="fuelUpdateInfo" class="text-center mt-3">
+                        <small class="text-muted">Veriler yükleniyor...</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(renderFuelPriceChart, 500);
+        });
+
+        async function renderFuelPriceChart() {
+            const updateInfo = document.getElementById('fuelUpdateInfo');
+            const ctx = document.getElementById('fuelPriceChart')?.getContext('2d');
+
+            if (!ctx) {
+                updateInfo.innerHTML = '<small class="text-danger">Grafik alanı (Canvas) bulunamadı.</small>';
+                return;
+            }
+
+            updateInfo.innerHTML = '<small class="text-muted"><i class="fas fa-sync-alt fa-spin me-1"></i> Veriler yükleniyor...</small>';
+
+            try {
+                const response = await fetch('/Admin/GetFuelPrices');
+                const result = await response.json();
+
+                if (result.success) {
+                    let data = result.data;
+                    let lastUpdateText = data.lastUpdate;
+
+                    // Gelen metinden "(yedek)" veya "(yedek)" gibi ifadeleri temizle
+                    if (lastUpdateText) {
+                        lastUpdateText = lastUpdateText.replace(/\(yedek\)/gi, '').trim();
+                    }
+
+
+                    const petrolPrice = parseFloat(data.petrol);
+                    const dieselPrice = parseFloat(data.diesel);
+                    const lpgPrice = parseFloat(data.lpg);
+
+                    const prices = [petrolPrice, dieselPrice, lpgPrice];
+                    const maxPrice = Math.max(...prices);
+
+                    // Fiyatları HTML'e yazdır.
+                    document.getElementById('petrol-price-display').textContent = '₺' + petrolPrice.toFixed(2).replace('.', ',');
+                    document.getElementById('diesel-price-display').textContent = '₺' + dieselPrice.toFixed(2).replace('.', ',');
+                    document.getElementById('lpg-price-display').textContent = '₺' + lpgPrice.toFixed(2).replace('.', ',');
+
+
+                    var fuelData = {
+                        labels: ["Benzin", "Motorin", "LPG"],
+                        datasets: [{
+                            label: 'Fiyat (₺)',
+                            data: prices,
+                            backgroundColor: [
+                                'rgba(139, 92, 246, 0.8)', // Mor
+                                'rgba(0, 184, 148, 0.8)', // Yeşil
+                                'rgba(236, 72, 153, 0.8)' // Pembe
+                            ],
+                            borderColor: [
+                                '#8B5CF6',
+                                '#00B894',
+                                '#EC4899'
+                            ],
+                            borderWidth: 1,
+                        }]
+                    };
+
+                    var fuelOptions = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            datalabels: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: true
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: { display: false }
+                            },
+                            y: {
+                                ticks: {
+                                    beginAtZero: false,
+                                    suggestedMax: maxPrice * 1.15,
+                                    callback: function(value) {
+                                        return '₺' + value.toFixed(2).replace('.', ',');
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: fuelData,
+                        options: fuelOptions
+                    });
+
+                    // Temizlenmiş metni kullan
+                    updateInfo.innerHTML = `<small class="text-muted"><i class="mdi mdi-clock-outline me-1"></i> Son güncelleme: ${lastUpdateText}</small>`;
+
+                } else {
+                    updateInfo.innerHTML = `<small class="text-danger">Veri alınamadı: ${result.message || 'Bilinmeyen Hata'}</small>`;
+                }
+
+            } catch (error) {
+                updateInfo.innerHTML = `<small class="text-danger">Veri yüklenirken kritik hata oluştu. (Konsolu Kontrol Edin)</small>`;
+                console.error("Kritik Grafik Yükleme Hatası:", error);
+            }
+        }
+    </script>
+}
+
+<style>
+    /* Diğer stiller burada devam eder... */
+    .icon-circle {
+        height: 48px;
+        width: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+        .icon-circle i {
+            font-size: 1.5rem;
+        }
+
+    .action-icon {
+        height: 40px;
+        width: 40px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .quick-actions .btn-outline-dark:hover {
+        background-color: #f8f9fa !important;
+        border-color: #f8f9fa !important;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    }
+
+    .quick-actions .btn-outline-dark {
+        text-align: left;
+        padding: 12px 15px;
+        border: 1px solid #dee2e6;
+        transition: all 0.2s ease;
+    }
+
+    .fuel-item h5 {
+        font-size: 1.5rem;
+    }
+</style>

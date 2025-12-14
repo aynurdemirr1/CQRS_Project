@@ -1,0 +1,130 @@
+﻿@model CQRS_Project.CQRS.Commands.ReservationCommands.CreateReservationCommand
+@{
+    ViewData["Title"] = "CreateReservation";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Rezervasyon Oluştur</h4>
+                        <form method="post" id="adminReservationForm">
+
+                            <div class="form-group">
+                                <label>Müşteri</label>
+                                <select asp-for="CustomerId" asp-items="ViewBag.Customers" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Araç</label>
+                                <select asp-for="CarId" asp-items="ViewBag.Cars" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Başlangıç Tarihi</label>
+                                <input type="date" asp-for="StartDate" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Bitiş Tarihi</label>
+                                <input type="date" asp-for="EndDate" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Alış Lokasyonu</label>
+                                <select asp-for="PickUpLocationId" asp-items="ViewBag.Locations" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Bırakış Lokasyonu</label>
+                                <select asp-for="DropOffLocationId" asp-items="ViewBag.Locations" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Toplam Tutar (Günlük Ücret X Gün Sayısı)</label>
+                                <input type="text" id="totalPriceDisplay" class="form-control" readonly style="font-weight: bold; background-color: #e9ecef;" value="0.00 TL" />
+                                <input type="hidden" id="DailyPriceHidden" value="0" />
+                            </div>
+                            <div class="form-group">
+                                <label>Durum</label>
+                                <select asp-for="Status" class="form-control">
+                                    <option value="Beklemede">Beklemede</option>
+                                    <option value="Onaylandı">Onaylandı</option>
+                                    <option value="İptal Edildi">İptal Edildi</option>
+                                </select>
+                            </div>
+
+                            <br />
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Kaydet</button>
+                            <a href="/Reservation/Index" class="btn btn-outline-light btn-sm">İptal</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // İlgili alanlar değiştiğinde tetiklenecek olaylar
+            $('#CarId, #StartDate, #EndDate').on('change', calculateAdminTotalPrice);
+
+            function calculateAdminTotalPrice() {
+                const carId = $('#CarId').val();
+                const startDate = $('#StartDate').val();
+                const endDate = $('#EndDate').val();
+                const $totalPriceDisplay = $('#totalPriceDisplay');
+
+                $totalPriceDisplay.val('Hesaplanıyor...');
+
+                // Tüm alanlar dolu mu kontrol et
+                if (!carId || !startDate || !endDate) {
+                    $totalPriceDisplay.val('0.00 TL (Tarih/Araç Seçin)');
+                    return;
+                }
+
+                const start = new Date(startDate);
+                const end = new Date(endDate);
+
+                // Tarih kontrolü
+                if (end <= start) {
+                    $totalPriceDisplay.val('Hata: Bitiş < Başlangıç');
+                    return;
+                }
+
+                // Gün sayısını hesapla (Miliseconds farkı / 1 günün milisaniyesi)
+                const timeDiff = end.getTime() - start.getTime();
+                const totalDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                // AJAX ile günlük fiyatı çek
+                $.ajax({
+                    type: 'GET',
+                    url: '/Car/GetDailyPrice/' + carId, // Buradaki URL Controller/Action'a göre ayarlanmalı!
+                    success: function (dailyPrice) {
+                        if (dailyPrice !== null && dailyPrice > 0) {
+                            const totalPrice = dailyPrice * totalDays;
+
+                            // Toplam tutarı göster
+                            $totalPriceDisplay.val(`${totalPrice.toFixed(2)} TL (${dailyPrice.toFixed(2)} TL/Gün X ${totalDays} Gün)`);
+
+                            // Gizli alana günlük fiyatı kaydetmek istersen (şimdilik bu kodda kullanılmıyor)
+                            $('#DailyPriceHidden').val(dailyPrice.toFixed(2));
+                        } else {
+                            $totalPriceDisplay.val('Hata: Günlük Fiyat Bulunamadı');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        $totalPriceDisplay.val('Hata: Fiyat Çekilemedi');
+                        console.error("Fiyat çekme hatası:", error);
+                    }
+                });
+            }
+        });
+    </script>
+}

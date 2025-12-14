@@ -1,0 +1,70 @@
+﻿@using CQRS_Project.CQRS.Results.ReviewResults
+@model List<GetReviewQueryResult>
+
+<div class="container-fluid testimonial pb-5">
+    <div class="container pb-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h1 class="display-5 text-capitalize mb-3">Müşteri<span class="text-primary"> Yorumları</span></h1>
+            <p class="mb-0">
+                Amacımız sadece araç kiralamak değil, unutulmaz bir deneyim yaşatmak. Müşterilerimizin CarVision hakkındaki dürüst yorumları, hizmet kalitemizin en güçlü kanıtıdır. Yol arkadaşlarınız ne diyor, bir göz atın.
+            </p>
+        </div>
+
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            @foreach (var item in Model)
+            {
+                string imagePath = "~/connect-plus-1.0.0/assets/images/faces/face1.jpg";
+
+                if (item.CustomerName == "Büşra Çınar")
+                    imagePath = "~/connect-plus-1.0.0/assets/images/faces/face10.jpg";
+
+                else if (item.CustomerName == "Ahmet Dağlı")
+                    imagePath = "~/connect-plus-1.0.0/assets/images/faces/face12.jpg";
+
+                else if (item.CustomerName == "Azra Akın")
+                    imagePath = "~/connect-plus-1.0.0/assets/images/faces/face20.jpg";
+
+                <div class="testimonial-item">
+                    <div class="testimonial-quote">
+                        <i class="fa fa-quote-right fa-2x"></i>
+                    </div>
+
+                    <div class="testimonial-inner p-4 d-flex align-items-center">
+                        <img src="@Url.Content(imagePath)" class="img-fluid"
+                             style="width: 80px; height:80px; border-radius:50%;" alt="@item.CustomerName Fotoğrafı" />
+
+                        <div class="ms-4">
+                            <h4>@item.CustomerName</h4>
+                            <p>İş İnsanı</p>
+
+                            <div class="d-flex text-primary">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-bottom p-4">
+                        <p class="mb-0">@item.Comment</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Temadaki gri alanı tamamen override etmek için kendi class'ımızı kullanıyoruz */
+    .testimonial-bottom {
+        background-color: #f4f0ff !important; /* Soft mor */
+        border-top: 1px solid #d7cafc !important;
+        color: #2c225a !important;
+    }
+
+        .testimonial-bottom p {
+            color: #2c225a !important;
+        }
+</style>
